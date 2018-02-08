@@ -1,0 +1,30 @@
+language: java
+jdk:
+- oraclejdk9
+
+cache:
+  directories:
+  - "$HOME/.m2"
+
+branches:
+  only:
+  - master
+
+script:
+- mvn compile
+- mvn assembly:single
+
+before_deploy:
+- export RELEASE_JAR_FILE=$(ls target/*.jar)
+- echo "deploying ${RELEASE_JAR_FILE} to GitHub releases"
+- git tag "build-$TRAVIS_BUILD_ID"
+
+deploy:
+  provider: releases
+  api_key:
+    secure: GSpCmVbrm5qw6sdgpSJZedNu4HKGI55dbDhADALV9x1lolFoQOQDTHo3YMs35h3MSHjmG3trAKczf5CHN55x2kxIHzJ0cJvMkXD6R6MBAIuyQr0LMkI0pZDUJZNObDdDuX0yDrGZja0e9frl2xh6ErgEqCzfBj/M2/LuslOjq6IDY3+arLeWDsqVIMnaw8sjNjKBM+xjes+kdQyVqswecEin8ZjVJuNYrqarrVtYin+wBZBPjEl+E1WhFP0IyYqU++Nzkp0reQhRZq5S5NKiS4pgqkh1faES/8Q2qG5nWZ1Y29sVdlGfWyUeAzIqIcOTUn7dcZ3D9VZUHm0Kai4+gINn8VtcaSMojcoFtQtHMspOs25DglHmNlh2f1Q0uK3tbBkzA2NBOgaCygAiBWSb29X2+uC9FEaKaB/WPAIHlWaIINjFL5P1HyMIX7PnqIxO2McYBAJJe17aOfo2So8rp3T3C67sLzZFbM4Nzj2bHw3XKnyWqTKSUea0ZHv2/yhBNF/7QdMtto58KUFCGeFuJzIgmaYhg+4qz0pCa8GuIzb+FWutL3+D5IQqttlfyHPIaWKu2Y0MaHX7uL1A9yugq1MyNim3m4ywXyTY5aDFiBkUZr+ubsK8eE1b2VG1QdJCtTWK92ia8c1OH0PzAdcowO2ZItKJ3UFUpML5/+Vkggg=
+  file: $RELEASE_JAR_FILE
+  skip_cleanup: true
+  on:
+    repo: andipaetzold/mdb-export
+    branch: master
