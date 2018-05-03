@@ -17,7 +17,7 @@ script:
 before_deploy:
 - export RELEASE_JAR_FILE=$(ls target/*.jar)
 - echo "deploying ${RELEASE_JAR_FILE} to GitHub releases"
-- git tag "build-$TRAVIS_BUILD_ID"
+- git tag "build-$TRAVIS_BUILD_NUMBER"
 
 deploy:
   provider: releases
