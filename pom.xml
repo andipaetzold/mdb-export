@@ -13,7 +13,7 @@
 
   <properties>
     <commons-cli.version>1.4</commons-cli.version>
-    <jackcess.version>2.1.6</jackcess.version>
+    <jackcess.version>2.1.11</jackcess.version>
     <java.version>9</java.version>
     <json.version>20180130</json.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
