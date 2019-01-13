@@ -2,12 +2,14 @@ package de.andipaetzold.mdbexport;
 
 import de.andipaetzold.mdbexport.builder.Builder;
 import de.andipaetzold.mdbexport.builder.JSONBuilder;
+
+import org.apache.commons.cli.CommandLine;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.Writer;
-import org.apache.commons.cli.CommandLine;
 
 public class Main {
   public static void main(String[] args) throws IOException {

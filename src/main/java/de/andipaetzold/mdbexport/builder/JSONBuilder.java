@@ -1,10 +1,12 @@
 package de.andipaetzold.mdbexport.builder;
 
 import de.andipaetzold.mdbexport.DatabaseParser;
+
+import org.json.JSONObject;
+
 import java.io.Writer;
 import java.util.List;
 import java.util.Map;
-import org.json.JSONObject;
 
 public class JSONBuilder implements Builder {
   public void write(DatabaseParser parser, Writer writer) {
